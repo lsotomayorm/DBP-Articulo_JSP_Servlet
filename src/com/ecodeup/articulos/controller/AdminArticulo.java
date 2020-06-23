@@ -26,12 +26,11 @@ public class AdminArticulo extends HttpServlet {
 		String jdbcURL = getServletContext().getInitParameter("jdbcURL");
 		String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
 		String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
-		System.out.println(jdbcURL);
 		try {
 
 			articuloDAO = new ArticuloDAO(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -117,6 +116,7 @@ public class AdminArticulo extends HttpServlet {
 	
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
+		System.out.println("En mostrar"); ////////
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
 		List<Articulo> listaArticulos= articuloDAO.listarArticulos();
 		request.setAttribute("lista", listaArticulos);
